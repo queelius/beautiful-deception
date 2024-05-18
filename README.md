@@ -15,12 +15,12 @@ A **cryptographic hash function** is a mathematical algorithm that converts an a
 Mathematically, a hash function can be represented as:
 
 $$
-\text{hash} : \\{0,1\\}^* \rightarrow \{0,1\}^n
+\text{hash} : \\{0,1\\}^* \rightarrow \\{0,1\\}^n
 $$
 
 ### Collision Resistance
 
-In probability terms, a cryptographic hash function with an output length of \( n \) bits has a collision probability of \( \frac{1}{2^n} \). For a random oracle, given its infinite output space, the probability of collision is zero. When truncated to \( n \) bits, the random oracle behaves similarly to a cryptographic hash function in terms of collision resistance.
+A well-designed cryptographic hash function with an output length of \( n \) bits has a collision probability of approximately \( \frac{1}{2^n} \). For a random oracle, given its infinite output space, the probability of collision is zero. When truncated to \( n \) bits, the random oracle behaves similarly to a cryptographic hash function in terms of collision resistance.
 
 The following Python class represents the general structure of a digest object, encapsulating these properties:
 
@@ -43,7 +43,7 @@ The **random oracle model** is an abstract machine used to study the security of
 Mathematically, a random oracle can be represented as:
 
 $$
-\text{oracle} : \{0,1\}^* \rightarrow \{0,1\}^\infty
+\text{oracle} : \\{0,1\\}^* \rightarrow \\{0,1\\}^\infty
 $$
 
 A `RandomOracleDigest` is conceptualized in our Python framework to mimic this behavior:
