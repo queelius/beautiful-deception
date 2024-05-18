@@ -15,7 +15,7 @@ A **cryptographic hash function** is a mathematical algorithm that converts an a
 Mathematically, a hash function can be represented as:
 
 $$
-\text{hash} : \{0,1\}^* \rightarrow \{0,1\}^n
+\text{hash} : \\{0,1\\}^* \rightarrow \{0,1\}^n
 $$
 
 ### Collision Resistance
