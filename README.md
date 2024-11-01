@@ -65,7 +65,7 @@ class OracleDigest(Digest):
 
 ## Lazy Computation and Infinite Digests
 
-**Lazy computation** refers to the programming strategy of delaying the calculation of a value until it is needed. This concept is particularly useful in dealing with theoretically infinite outputs on finite Turing machines.
+**Lazy computation** refers to the programming strategy of delaying the calculation of a value until it is needed. This concept is particularly useful in dealing with theoretically infinite outputs on finite machines. One can even define an algebra over the data structure, such as `truncate` and, `apply`, and so on. However, note that operations like `concat` are restricted to left-hand-side being finite and right-hand-side being potentially infinite. Essentially, any operation that does not require acccess or modification with respect to the right-hand-side is allowed.
 
 In our framework, `LazyDigest` generates infinite outputs based on a seed value and a hash function, allowing the digest to be computed on demand:
 

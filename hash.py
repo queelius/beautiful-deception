@@ -71,11 +71,8 @@ class OracleHash(CryptoHash):
     """
     A lazy function that approximates a random oracle using a cryptographic hash function.
 
-    It's a function of type $h: {0,1}^* -> {0,1}^\infty$, or more concretely,
-
-    $$
-    [Byte] -> LazyDigest.
-    $$ 
+    It's a function of type ${0,1}^* -> {0,1}^\infty$, or more concretely:
+    `Hashable -> LazyDigest`.
     """
 
     def __call__(self, x):
