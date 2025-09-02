@@ -6,7 +6,11 @@ class Digest:
     A digest is the output from a hash function, such as SHA-256. This class
     provides a common interface to access the hash function output, regardless
     of which hash function generated the digest.
+    
+    Mathematical Type: {0,1}^n (finite bit string of length n)
     """
+    
+    __type__ = "{0,1}^n"
 
     def truncate(self, length):
         """
@@ -89,14 +93,14 @@ class OracleDigest(Digest):
     random oracle, which is a function of type
 
     $$
-
     {0,1}^* -> {0,1}^\infty
-
     $$
 
     with the property that the first time an input is seen, the output is
     generated randomly, but thereafter the same output is returned for the
     same input.
+    
+    Mathematical Type: {0,1}^∞ (infinite bit string, accessed lazily)
 
     Random oracles are non-computable theoretical objects. However, this class
     provides very good approximation if `entropy_source` is a true random number
@@ -215,11 +219,29 @@ class LazyDigest(Digest):
     def __getitem__(self, index):
         """
         Get the byte at the given index in the digest.
+        
+        This implements the core algorithm for extending a finite seed into
+        an infinite sequence:
+        
+        Algorithm: ExtendedOutput(seed, index)
+        ─────────────────────────────────────
+        1. h ← HashFunction()
+        2. h.update(seed || index)
+        3. return h.digest()[0]
+        
+        This creates a deterministic pseudo-random sequence where:
+        - Each byte is computed independently (no need to compute previous bytes)
+        - The sequence appears random to computationally bounded adversaries
+        - The same (seed, index) pair always produces the same byte
+        
+        This is how we approximate a random oracle's infinite output:
+        oracle(x) = [h(seed||0), h(seed||1), h(seed||2), ...]
+        where seed = h(x)
         """
         h = self.hash_fn()
-        h.update(self.digest())
-        h.update(str(index).encode('utf-8'))
-        return h.digest()[0]
+        h.update(self.digest())  # self.digest() is our seed
+        h.update(str(index).encode('utf-8'))  # Concatenate with index
+        return h.digest()[0]  # Return first byte of hash output
     
     def __repr__(self):
         """

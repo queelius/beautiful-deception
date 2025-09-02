@@ -1,4 +1,4 @@
-import digest
+from . import digest
 import hashlib
 
 class Oracle:
