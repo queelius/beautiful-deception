@@ -1,0 +1,5 @@
+# Core dependencies (Python standard library only!)
+# No external dependencies required for basic functionality
+
+# Optional dependencies for development
+# Install with: pip install -r requirements-dev.txt
