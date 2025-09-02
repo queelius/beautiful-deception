@@ -14,8 +14,10 @@
 
 ## Files to Upload
 1. `paper/beautiful_deception.tex` (main LaTeX source)
-2. `paper/references.bib` (bibliography)
+2. `paper/beautiful_deception.bbl` (compiled bibliography - REQUIRED by arXiv)
 3. `paper/beautiful_deception.pdf` (compiled PDF - optional but recommended)
+
+**Note:** Do NOT upload `references.bib`. ArXiv requires the pre-compiled `.bbl` file instead.
 
 ## Abstract for arXiv Submission
 
